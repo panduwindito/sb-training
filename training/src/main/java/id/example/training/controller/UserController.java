@@ -1,8 +1,10 @@
 package id.example.training.controller;
 
 import id.example.training.domain.dto.request.CreateUpdateUserDto;
+import id.example.training.domain.dto.response.BaseResponseDto;
 import id.example.training.domain.dto.response.UserInfoDto;
 import id.example.training.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +36,9 @@ public class UserController {
     response: list of UserInfoDto
      */
     @GetMapping
-    public ResponseEntity<List<UserInfoDto>> getAllInfo(){
+    public ResponseEntity<BaseResponseDto<List<UserInfoDto>>> getAllInfo(){
         List<UserInfoDto> userInfoDtoList = userService.getAllInfo();
-        return ResponseEntity.ok(userInfoDtoList);
+        return ResponseEntity.ok(new BaseResponseDto<>(userInfoDtoList));
     }
 
     /*
@@ -47,10 +49,13 @@ public class UserController {
     response: String
      */
 
+    //add valid annotation so spring validation will work
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody CreateUpdateUserDto createUpdateUserDto){
+    public ResponseEntity<BaseResponseDto> createUser(
+        @Valid @RequestBody CreateUpdateUserDto createUpdateUserDto
+    ){
         userService.createUser(createUpdateUserDto);
-        return ResponseEntity.ok("User Created");
+        return ResponseEntity.ok(new BaseResponseDto("User Created"));
     }
 
     /*
@@ -62,9 +67,9 @@ public class UserController {
      */
 
     @GetMapping("/detail")
-    public ResponseEntity<UserInfoDto> getUserDetail(UUID userId){
+    public ResponseEntity<BaseResponseDto<UserInfoDto>> getUserDetail(UUID userId){
         UserInfoDto userInfoDto = userService.getDetail(userId);
-        return ResponseEntity.ok(userInfoDto);
+        return ResponseEntity.ok(new BaseResponseDto<>(userInfoDto));
     }
 
     /*
@@ -77,12 +82,12 @@ public class UserController {
      */
 
     @PutMapping("/update/{userId}")
-    public ResponseEntity<String> updateUser(
+    public ResponseEntity<BaseResponseDto> updateUser(
             @PathVariable UUID userId,
-            @RequestBody CreateUpdateUserDto updateUserDto
+            @Valid @RequestBody CreateUpdateUserDto updateUserDto
     ){
         userService.updateUser(userId, updateUserDto);
-        return ResponseEntity.ok("User Updated");
+        return ResponseEntity.ok(new BaseResponseDto("User Updated"));
     }
 
     /*
@@ -94,9 +99,9 @@ public class UserController {
      */
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<String> deleteUser(@PathVariable UUID userId){
+    public ResponseEntity<BaseResponseDto> deleteUser(@PathVariable UUID userId){
         userService.deleteUser(userId);
-        return ResponseEntity.ok("User Deleted");
+        return ResponseEntity.ok(new BaseResponseDto("User Deleted"));
     }
 
 }

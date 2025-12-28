@@ -3,6 +3,7 @@ package id.example.training.service.impl;
 import id.example.training.domain.dto.request.CreateUpdateUserDto;
 import id.example.training.domain.dto.response.UserInfoDto;
 import id.example.training.domain.entity.UserEntity;
+import id.example.training.exeption.DataNotFoundException;
 import id.example.training.repository.UserRepository;
 import id.example.training.service.UserService;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfoDto getDetail(UUID userId) {
         UserEntity user = userRepository.findById(userId).orElse(null);
+
+        // add validation to check is user exist or not
+        if(user == null){
+            throw new DataNotFoundException("User not found with uuid: " + userId);
+        }
+
         UserInfoDto userInfoDto = new UserInfoDto();
         userInfoDto.setId(user.getId());
         userInfoDto.setName(user.getName());
@@ -69,6 +76,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(UUID userId, CreateUpdateUserDto createUpdateUserDto) {
         UserEntity user = userRepository.findById(userId).orElse(null);
+
+        // add validation to check is user exist or not
+        if(user == null){
+            throw new DataNotFoundException("User not found with uuid: " + userId);
+        }
+
         user.setName(createUpdateUserDto.getName());
         user.setEmail(createUpdateUserDto.getEmail());
         user.setPassword(createUpdateUserDto.getPassword());

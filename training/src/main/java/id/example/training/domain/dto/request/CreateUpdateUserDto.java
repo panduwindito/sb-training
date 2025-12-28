@@ -1,9 +1,13 @@
 package id.example.training.domain.dto.request;
 
 
+import jakarta.validation.constraints.NotNull;
+
 //class for handle request body for create and update user
 public class CreateUpdateUserDto {
 
+    //example for validation
+    @NotNull(message = "Name cannot be null")
     private String name;
     private String email;
     private String password;
