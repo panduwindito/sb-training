@@ -10,3 +10,8 @@ Separate section for every section and every branch has its own note in notes fo
 1. Main:
    - Folder structure
    - Basic API
+2. Validation:
+   - add request validation
+   - add custom exception
+   - centralize exception handling
+   - add format response
