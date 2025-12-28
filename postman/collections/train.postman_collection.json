@@ -1,0 +1,131 @@
+{
+  "info": {
+    "_postman_id": "36e4517c-c706-478c-8069-4b89db53c091",
+    "name": "train",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All User",
+      "id": "a6ef8365-79df-4ee3-b071-8b3220bdc22e",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/user",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get User Detail",
+      "id": "96bc2bfa-5299-498d-9831-0d138f182c75",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/user/detail?userId=723a23cc-fe15-4fb4-8871-bb3cd058e9e5",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "user",
+            "detail"
+          ],
+          "query": [
+            {
+              "key": "userId",
+              "value": "723a23cc-fe15-4fb4-8871-bb3cd058e9e5"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create User",
+      "id": "58310d04-a48d-4cfd-9804-afad2d6dd5e4",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Pandu\",\r\n    \"email\": \"pandu@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/user",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "user"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update User",
+      "id": "0e4481a2-33d1-4118-8e3c-fc95c20ac6c5",
+      "request": {
+        "method": "PUT",
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"Pandu1\",\r\n    \"email\": \"pandu@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/user/update/723a23cc-fe15-4fb4-8871-bb3cd058e9e5",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "user",
+            "update",
+            "723a23cc-fe15-4fb4-8871-bb3cd058e9e5"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete User",
+      "id": "7e6ee738-39e1-4f73-847b-3f92d3407ce7",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/user/723a23cc-fe15-4fb4-8871-bb3cd058e9e5",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "user",
+            "723a23cc-fe15-4fb4-8871-bb3cd058e9e5"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "e1fed0c9-6359-4332-8f3f-f0536d4f5ff8",
+      "key": "baseURL",
+      "value": "",
+      "type": "default"
+    },
+    {
+      "id": "10be2a1f-4432-43aa-becf-5614ae45b405",
+      "key": "baseURL",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

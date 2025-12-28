@@ -1,0 +1,25 @@
+spring:
+  application:
+    #name of the application
+    name: training
+  #default database configuration
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://127.0.0.1:5432/traindb?currentSchema=development
+    username: postgres
+    password: Password1
+  #jpa configuration
+  jpa:
+    properties:
+      hibernate:
+        format-sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        #spring will create all table if not exist
+        ddl-auto: update
+    #to show sql in console
+    show-sql: true
+    generate-ddl: true
+
+#define spring boot server port
+server:
+  port: 8080
